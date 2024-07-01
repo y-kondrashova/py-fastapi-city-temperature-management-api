@@ -23,7 +23,7 @@ async def update_temperatures(db: Session = Depends(get_db)):
     async with httpx.AsyncClient() as client:
         for city in cities:
             response = await client.get(
-                f"{BASE_URL}?key={WEATHER_API_KEY}&q={city.name}"
+                BASE_URL + "?key=" + WEATHER_API_KEY + "&q=" + city.name
             )
             data = response.json()
             temperature_data = schemas.TemperatureCreate(
